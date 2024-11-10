@@ -22,7 +22,13 @@ public class Region extends BaseEntity {
     private String name;
 
     @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
-    private List<Store> storeList = new ArrayList<>();
+    private List<Store> stores = new ArrayList<>();
 
-
+    @Override
+    public String toString() {
+        return "Region{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

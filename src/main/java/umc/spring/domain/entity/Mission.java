@@ -2,6 +2,7 @@ package umc.spring.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.mapping.MemberMission;
 
@@ -21,6 +22,7 @@ public class Mission extends BaseEntity {
     private Long id;
 
     @Column(nullable = false)
+    @ColumnDefault("0")
     private Integer reward;
 
     private LocalDateTime deadLine;
@@ -35,4 +37,14 @@ public class Mission extends BaseEntity {
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissions = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "id=" + id +
+                ", reward=" + reward +
+                ", deadLine=" + deadLine +
+                ", missionSpec='" + missionSpec + '\'' +
+                ", store=" + store +
+                '}';
+    }
 }
