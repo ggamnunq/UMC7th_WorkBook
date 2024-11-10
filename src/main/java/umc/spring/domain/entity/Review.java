@@ -32,4 +32,14 @@ public class Review extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String body;
 
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", score=" + score +
+                ", store=" + store +
+                ", member=" + member +
+                ", body='" + body + '\'' +
+                '}';
+    }
 }

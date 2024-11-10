@@ -28,7 +28,7 @@ public class Store extends BaseEntity {
     private Float score;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "region_id")
+    @JoinColumn(name = "region_id", nullable = false)
     private Region region;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)

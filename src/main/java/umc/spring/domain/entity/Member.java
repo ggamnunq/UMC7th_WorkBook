@@ -2,6 +2,7 @@ package umc.spring.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
@@ -69,4 +70,24 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", address='" + address + '\'' +
+                ", specAddress='" + specAddress + '\'' +
+                ", gender=" + gender +
+                ", socialType=" + socialType +
+                ", status=" + status +
+                ", inactiveDate=" + inactiveDate +
+                ", email='" + email + '\'' +
+                ", point=" + point +
+//                ", memberAgreeList=" + memberAgreeList +
+//                ", memberPreferList=" + memberPreferList +
+//                ", reviewList=" + reviewList +
+//                ", memberMissionList=" + memberMissionList +
+                '}';
+    }
 }
