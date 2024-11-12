@@ -1,11 +1,14 @@
 package umc.spring.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.domain.entity.Mission;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.repository.MissionRepository.MissionRepository;
+import umc.spring.web.dto.MissionDTO;
 
 import java.util.List;
 
@@ -15,22 +18,27 @@ import java.util.List;
 public class MissionServiceImpl implements MissionService {
 
     private final MissionRepository missionRepository;
+    
+    private final Integer pageSize = 3;
 
     @Override
-    public List<Mission> findMyMissionsByStatus(Long memberId, MissionStatus status, int offset) {
+    public Page<MissionDTO.MissionStatusDTO> findMyMissionsByStatus(Long memberId, MissionStatus status, Integer page) {
 
-        List<Mission> missions = missionRepository.findMissionsByMemberIdAndStatus(memberId, status, offset);
-        missions.forEach(mission -> {
-            System.out.println("Mission: " + mission);
-        });
+        PageRequest pageRequest = PageRequest.of(page, pageSize);
+        Page<Mission> pagedMissions = missionRepository.findMissionsByMemberIdAndStatus(memberId, status, pageRequest);
+        return pagedMissions.map(mission ->
 
-        if (missions.isEmpty()) {
-            throw new RuntimeException("결과 없음");
-        }
+                MissionDTO.MissionStatusDTO.builder()
+                        .missionSpec(mission.getMissionSpec())
+                        .reward(mission.getReward())
+                        .storeName(mission.getStore().getName())
+                        .status(status)
+                        .build()
 
-        return missions;
+        );
 
     }
+
 
     @Override
     public List<Mission> findMissionsForHomePage(Long memberId, Long regionId, MissionStatus status, int offset) {
@@ -43,6 +51,23 @@ public class MissionServiceImpl implements MissionService {
 
         return missions;
 
+    }
+
+    @Override
+    public Page<MissionDTO.MissionRegionDTO> findMissionsForHomePage(Long memberId, Long regionId, MissionStatus status, Integer page) {
+
+        PageRequest pageRequest = PageRequest.of(page, pageSize);
+        Page<Mission> pagedMissions = missionRepository.findMissionsByRegionAndMember(memberId, regionId, status, pageRequest);
+
+        return pagedMissions.map(mission ->
+                MissionDTO.MissionRegionDTO.builder()
+                        .reward(mission.getReward())
+                        .regionName(mission.getStore().getRegion().getName())
+                        .missionSpec(mission.getMissionSpec())
+                        .status(status)
+                        .deadLine(mission.getDeadLine())
+                        .build()
+        );
     }
 
     @Override
