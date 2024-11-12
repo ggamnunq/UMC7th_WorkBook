@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import umc.spring.domain.entity.Mission;
 import umc.spring.domain.entity.Review;
 import umc.spring.domain.enums.MissionStatus;
+import umc.spring.service.MemberService;
 import umc.spring.service.MissionService;
 import umc.spring.service.ReviewService;
 import umc.spring.service.StoreQueryService;
@@ -110,43 +111,42 @@ public class Application {
 //	}
 
 	//홈 화면 쿼리 (현재 선택 된 지역에서 도전이 가능한 미션 목록, 페이징 포함)
-	@Bean
-	public CommandLineRunner run(ApplicationContext context) {
-
-		return args -> {
-
-			MissionService missionService = context.getBean(MissionService.class);
-
-			Long memberId = 1L;
-			Long regionId = 2L;
-			Integer startPage = 0;
-			int offset = 0;
-
-			System.out.println("홈 화면 로딩");
-			System.out.println("memberId: " + memberId);
-			System.out.println("regionId: " + regionId);
-
-			Page<MissionDTO.MissionRegionDTO> missionsForHomePage = missionService.findMissionsForHomePage(memberId, regionId, MissionStatus.CHALLENGING, startPage);
-			for (MissionDTO.MissionRegionDTO missionRegionDTO : missionsForHomePage) {
-				System.out.println(missionRegionDTO);
-			}
-			Page<MissionDTO.MissionRegionDTO> cleared = missionService.findMissionsForHomePage(memberId, regionId, MissionStatus.COMPLETE, startPage);
-			System.out.println("count = " + cleared.getTotalElements());
-
-		};
-
-	}
-
-	//마이페이지 화면 쿼리
 //	@Bean
 //	public CommandLineRunner run(ApplicationContext context) {
 //
 //		return args -> {
-//			MemberService memberService = context.getBean(MemberService.class);
+//
+//			MissionService missionService = context.getBean(MissionService.class);
+//
 //			Long memberId = 1L;
-//			System.out.println(memberService.findMemberById(memberId));
+//			Long regionId = 2L;
+//			Integer startPage = 0;
+//
+//			System.out.println("홈 화면 로딩");
+//			System.out.println("memberId: " + memberId);
+//			System.out.println("regionId: " + regionId);
+//
+//			Page<MissionDTO.MissionRegionDTO> missionsForHomePage = missionService.findMissionsForHomePage(memberId, regionId, MissionStatus.CHALLENGING, startPage);
+//			for (MissionDTO.MissionRegionDTO missionRegionDTO : missionsForHomePage) {
+//				System.out.println(missionRegionDTO);
+//			}
+//			Page<MissionDTO.MissionRegionDTO> cleared = missionService.findMissionsForHomePage(memberId, regionId, MissionStatus.COMPLETE, startPage);
+//			System.out.println("count = " + cleared.getTotalElements());
+//
 //		};
 //
 //	}
+
+	//마이페이지 화면 쿼리
+	@Bean
+	public CommandLineRunner run(ApplicationContext context) {
+
+		return args -> {
+			MemberService memberService = context.getBean(MemberService.class);
+			Long memberId = 1L;
+			System.out.println(memberService.findMemberForMyPage(memberId));
+		};
+
+}
 
 }
