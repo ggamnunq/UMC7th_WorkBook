@@ -1,10 +1,10 @@
 package umc.spring.service;
 
-import umc.spring.domain.entity.Member;
+import umc.spring.web.dto.MemberDTO;
 
 
 public interface MemberService {
 
-    public Member findMemberById(Long id);
+    public MemberDTO.MyPageMemberDTO findMemberForMyPage(Long id);
 
 }

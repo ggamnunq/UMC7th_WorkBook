@@ -11,6 +11,7 @@ import umc.spring.repository.MemberRepository.MemberRepository;
 import umc.spring.repository.ReviewRepository.ReviewRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
 import umc.spring.web.dto.ReviewAddDTO;
+import umc.spring.web.dto.ReviewDTO;
 
 import java.util.List;
 
@@ -25,18 +26,24 @@ public class ReviewServiceImpl implements ReviewService {
     private final EntityManager em;
 
     @Override
-    public List<Review> getReviews(Long storeId) {
+    public List<ReviewDTO.ReviewInquiryDTO> getReviews(Long storeId) {
 
         List<Review> reviews = reviewRepository.findReviewsByStore(storeId);
-        reviews.forEach(review -> {
-            System.out.println("Review : " + review);
-        });
 
-        if (reviews.isEmpty()) {
+        List<ReviewDTO.ReviewInquiryDTO> dtoList = reviews.stream().map(review ->
+                ReviewDTO.ReviewInquiryDTO.builder()
+                        .memberName(review.getMember().getName())
+                        .score(review.getScore())
+                        .createdAt(review.getCreatedAt())
+                        .body(review.getBody())
+                        .build()
+        ).toList();
+
+        if (dtoList.isEmpty()) {
             throw new RuntimeException("리뷰 없음");
         }
 
-        return reviews;
+        return dtoList;
     }
 
     @Override
