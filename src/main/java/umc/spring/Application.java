@@ -130,23 +130,23 @@ public class Application {
 //			for (MissionDTO.MissionRegionDTO missionRegionDTO : missionsForHomePage) {
 //				System.out.println(missionRegionDTO);
 //			}
-//			Page<MissionDTO.MissionRegionDTO> cleared = missionService.findMissionsForHomePage(memberId, regionId, MissionStatus.COMPLETE, startPage);
-//			System.out.println("count = " + cleared.getTotalElements());
+////			Page<MissionDTO.MissionRegionDTO> cleared = missionService.findMissionsForHomePage(memberId, regionId, MissionStatus.COMPLETE, startPage);
+////			System.out.println("수행한 미션 수 = " + cleared.getTotalElements());
 //
 //		};
 //
 //	}
 
 	//마이페이지 화면 쿼리
-	@Bean
-	public CommandLineRunner run(ApplicationContext context) {
-
-		return args -> {
-			MemberService memberService = context.getBean(MemberService.class);
-			Long memberId = 1L;
-			System.out.println(memberService.findMemberForMyPage(memberId));
-		};
-
-}
+//	@Bean
+//	public CommandLineRunner run(ApplicationContext context) {
+//
+//		return args -> {
+//			MemberService memberService = context.getBean(MemberService.class);
+//			Long memberId = 1L;
+//			System.out.println(memberService.findMemberForMyPage(memberId));
+//		};
+//
+//	}
 
 }

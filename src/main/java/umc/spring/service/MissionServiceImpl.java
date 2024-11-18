@@ -36,9 +36,7 @@ public class MissionServiceImpl implements MissionService {
                         .build()
 
         );
-
     }
-
 
     @Override
     public List<Mission> findMissionsForHomePage(Long memberId, Long regionId, MissionStatus status, int offset) {
