@@ -8,7 +8,7 @@ import umc.spring.repository.FoodCategoryRepository.FoodCategoryRepository;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = false)
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class FoodCategoryQueryServiceImpl implements FoodCategoryQueryService {
 
