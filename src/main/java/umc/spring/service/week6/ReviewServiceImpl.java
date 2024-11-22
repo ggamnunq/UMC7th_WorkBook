@@ -1,4 +1,4 @@
-package umc.spring.service;
+package umc.spring.service.week6;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

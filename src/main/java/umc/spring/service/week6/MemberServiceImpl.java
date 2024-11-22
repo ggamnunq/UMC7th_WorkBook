@@ -1,4 +1,4 @@
-package umc.spring.service;
+package umc.spring.service.week6;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,8 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.spring.domain.entity.Member;
 import umc.spring.repository.MemberRepository.MemberRepository;
 import umc.spring.web.dto.MemberDTO;
-
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)

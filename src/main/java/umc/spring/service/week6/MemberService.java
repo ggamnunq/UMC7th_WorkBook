@@ -1,4 +1,4 @@
-package umc.spring.service;
+package umc.spring.service.week6;
 
 import umc.spring.web.dto.MemberDTO;
 

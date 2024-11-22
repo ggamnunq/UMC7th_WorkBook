@@ -1,9 +1,8 @@
-package umc.spring.service;
+package umc.spring.service.week6;
 
 import org.springframework.data.domain.Page;
 import umc.spring.domain.entity.Mission;
 import umc.spring.domain.enums.MissionStatus;
-import umc.spring.web.dto.MemberMissionDTO;
 import umc.spring.web.dto.MissionDTO;
 
 import java.util.List;
