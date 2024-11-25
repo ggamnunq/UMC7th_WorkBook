@@ -24,7 +24,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     @Transactional(readOnly = false)
     public Store add(StoreRequestDTO.AddDto request) {
         Store newStore = StoreConverter.toStore(request);
-        Region region = regionRepository.findById(request.getRegionId()).orElseThrow(() -> new RegionHandler(ErrorStatus.STORE_NOT_FOUND));
+        Region region = regionRepository.findById(request.getRegionId()).orElseThrow(() -> new RegionHandler(ErrorStatus.REGION_NOT_FOUND));
         newStore.setRegion(region);
         return storeRepository.save(newStore);
     }
