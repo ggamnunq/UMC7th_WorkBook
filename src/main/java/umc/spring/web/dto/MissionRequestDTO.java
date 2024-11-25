@@ -3,6 +3,7 @@ package umc.spring.web.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import umc.spring.validation.annotation.ExistMember;
 import umc.spring.validation.annotation.ExistStore;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,14 @@ public class MissionRequestDTO {
 
     }
 
+    @Getter
+    public static class ChallengeMissionDto {
 
+        @ExistMember
+        Long memberId;
+        @ExistStore
+        Long storeId;
+
+    }
 
 }

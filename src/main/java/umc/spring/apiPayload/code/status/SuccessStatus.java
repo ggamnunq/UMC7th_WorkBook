@@ -20,7 +20,8 @@ public enum SuccessStatus implements BaseCode {
     REVIEW_ADD(HttpStatus.OK, "REVIEW200", "리뷰 추가 성공"),
 
     //미션 응답
-    MISSION_ADD(HttpStatus.OK, "MISSION200", "가게에 미션 추가 성공")
+    MISSION_ADD(HttpStatus.OK, "MISSION200", "가게에 미션 추가 성공"),
+    MISSION_CHALLENGE(HttpStatus.OK, "MISSION201", "가게의 미션을 도전 중인 미션에 추가 성공")
     ;
 
     private final HttpStatus httpStatus;

@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import umc.spring.domain.entity.Mission;
+import umc.spring.domain.entity.QMission;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.mapping.QMemberMission;
@@ -26,6 +27,7 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
 
     private final JPAQueryFactory jpaQueryFactory;
     private final QMemberMission memberMission = QMemberMission.memberMission;
+    private final QMission mission = QMission.mission;
 
     @Override
     public Page<Mission> findMissionsByMemberIdAndStatus(Long memberId, MissionStatus status, Pageable pageable) {
@@ -68,6 +70,8 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
 
     }
 
+
+
     @Override
     public Page<Mission> findMissionsByRegionAndMember(Long memberId, Long regionId, MissionStatus status, Pageable pageable) {
 
@@ -89,6 +93,7 @@ public class MissionRepositoryImpl implements MissionRepositoryCustom {
         List<Mission> missionList = memberMissionList.stream().map(MemberMission::getMission).toList();
         return new PageImpl<>(missionList, pageable, memberMissionList.size());
     }
+
 
 
 }

@@ -14,4 +14,5 @@ public interface MissionRepositoryCustom {
     List<Mission> findMissionsByRegionAndMember(Long memberId, Long regionId, MissionStatus status, int offset);
     Page<Mission> findMissionsByRegionAndMember(Long memberId, Long regionId, MissionStatus status, Pageable pageable);
 
+
 }
