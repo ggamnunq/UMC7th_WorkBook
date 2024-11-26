@@ -34,4 +34,9 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     public boolean existsById(Long id) {
         return storeRepository.existsById(id);
     }
+
+    @Override
+    public Store findById(Long id) {
+        return storeRepository.findById(id).orElseThrow( () -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
+    }
 }

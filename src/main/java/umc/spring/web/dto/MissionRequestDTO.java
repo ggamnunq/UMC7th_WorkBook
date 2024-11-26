@@ -3,6 +3,7 @@ package umc.spring.web.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import umc.spring.validation.annotation.AlreadyChallenging;
 import umc.spring.validation.annotation.MemberValid;
 import umc.spring.validation.annotation.StoreValid;
 
@@ -25,6 +26,7 @@ public class MissionRequestDTO {
     }
 
     @Getter
+    @AlreadyChallenging
     public static class ChallengeMissionDto {
 
         @MemberValid

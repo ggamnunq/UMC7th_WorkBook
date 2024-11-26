@@ -57,4 +57,5 @@ public class MissionCommandServiceImpl implements MissionCommandService {
         memberMissionRepository.saveAll(memberMissionList);
         return missionList;
     }
+
 }

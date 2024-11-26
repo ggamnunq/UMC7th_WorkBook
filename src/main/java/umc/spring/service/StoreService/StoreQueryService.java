@@ -10,4 +10,5 @@ public interface StoreQueryService {
     Optional<Store> findStore(Long id);
     List<Store> findStoresByNameAndScore(String name, float score);
     public boolean existsById(Long id);
+    public Store findById(Long id);
 }
