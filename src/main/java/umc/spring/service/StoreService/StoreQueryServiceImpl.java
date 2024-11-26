@@ -32,9 +32,6 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     @Override
     public boolean existsById(Long id) {
-        if (id == null) {
-            throw new StoreHandler(ErrorStatus.STORE_NULL);
-        }
         return storeRepository.existsById(id);
     }
 }

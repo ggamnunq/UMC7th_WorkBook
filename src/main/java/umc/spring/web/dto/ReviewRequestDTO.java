@@ -3,16 +3,16 @@ package umc.spring.web.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import umc.spring.validation.annotation.ExistMember;
-import umc.spring.validation.annotation.ExistStore;
+import umc.spring.validation.annotation.MemberValid;
+import umc.spring.validation.annotation.StoreValid;
 
 public class ReviewRequestDTO {
 
     @Getter
     public static class AddDto {
-        @ExistStore
+        @StoreValid
         Long storeId;
-        @ExistMember
+        @MemberValid
         Long memberId;
         @NotBlank
         String body;

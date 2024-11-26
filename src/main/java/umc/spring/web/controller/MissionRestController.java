@@ -32,8 +32,8 @@ public class MissionRestController {
 
     @PostMapping("/challenge")
     public ApiResponse<MissionResponseDTO.MissionChallengeResultDto> challengeMission(@RequestBody @Valid MissionRequestDTO.ChallengeMissionDto request) {
-        List<Mission> memberMissions = missionCommandService.challengeMission(request);
-        return ApiResponse.of(SuccessStatus.MISSION_CHALLENGE, MissionConverter.toChallengeMissionResultDto(memberMissions, request.getMemberId()));
+        List<Mission> missions = missionCommandService.challengeMission(request);
+        return ApiResponse.of(SuccessStatus.MISSION_CHALLENGE, MissionConverter.toChallengeMissionResultDto(missions, request.getMemberId()));
     }
 
 }

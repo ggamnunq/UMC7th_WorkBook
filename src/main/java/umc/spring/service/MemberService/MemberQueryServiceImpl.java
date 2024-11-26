@@ -16,9 +16,6 @@ public class MemberQueryServiceImpl implements MemberQueryService {
 
     @Override
     public boolean existsById(Long id) {
-        if (id == null) {
-            throw new MemberHandler(ErrorStatus.MEMBER_NULL);
-        }
         return memberRepository.existsById(id);
     }
 }

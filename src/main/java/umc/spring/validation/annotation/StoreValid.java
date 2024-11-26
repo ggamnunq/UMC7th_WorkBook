@@ -2,17 +2,15 @@ package umc.spring.validation.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
-import umc.spring.validation.validator.StoreExistValidator;
+import umc.spring.validation.validator.StoreValidator;
 
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = StoreExistValidator.class)
-@Target({
-        ElementType.METHOD,ElementType.FIELD, ElementType.PARAMETER
-})
+@Constraint(validatedBy = StoreValidator.class)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExistStore {
+public @interface StoreValid {
 
     String message() default "해당하는 가게가 없습니다.";
     Class<?>[] groups() default {};
