@@ -29,10 +29,10 @@ public class StoreValidator implements ConstraintValidator<StoreValid, Long> {
         if (!isValid) {
             context.disableDefaultConstraintViolation();
             if (isNull) {
-                context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_REQUIRED.toString()).addConstraintViolation();
+                context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_REQUIRED.getMessage()).addConstraintViolation();
             }
             else{
-                context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.toString()).addConstraintViolation();
+                context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.getMessage()).addConstraintViolation();
             }
         }
         return isValid;
