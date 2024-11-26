@@ -1,24 +1,8 @@
 package umc.spring;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import umc.spring.domain.entity.Mission;
-import umc.spring.domain.entity.Review;
-import umc.spring.domain.enums.MissionStatus;
-import umc.spring.service.MemberService;
-import umc.spring.service.MissionService;
-import umc.spring.service.ReviewService;
-import umc.spring.service.StoreQueryService;
-import umc.spring.web.dto.MemberMissionDTO;
-import umc.spring.web.dto.MissionDTO;
-import umc.spring.web.dto.ReviewAddDTO;
-
-import java.util.List;
 
 @SpringBootApplication
 @EnableJpaAuditing

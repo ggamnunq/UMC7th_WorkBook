@@ -1,8 +1,10 @@
-package umc.spring.service;
+package umc.spring.service.StoreService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.spring.apiPayload.code.status.ErrorStatus;
+import umc.spring.apiPayload.exception.handler.StoreHandler;
 import umc.spring.domain.entity.Store;
 import umc.spring.repository.StoreRepository.StoreRepository;
 
@@ -25,7 +27,16 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     public List<Store> findStoresByNameAndScore(String name, float score) {
         List<Store> filteredScores = storeRepository.dynamicQueryWithBooleanBuilder(name, score);
         filteredScores.forEach(store -> System.out.println("Store : " + store));
-
         return filteredScores;
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return storeRepository.existsById(id);
+    }
+
+    @Override
+    public Store findById(Long id) {
+        return storeRepository.findById(id).orElseThrow( () -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
     }
 }

@@ -10,7 +10,19 @@ import umc.spring.apiPayload.code.ReasonDTO;
 @AllArgsConstructor
 public enum SuccessStatus implements BaseCode {
 
-    _OK(HttpStatus.OK, "COMMON200", "성공입니다.");
+    //일반적 응답
+    _OK(HttpStatus.OK, "COMMON200", "성공입니다."),
+
+    //가게 응답
+    STORE_ADD(HttpStatus.OK, "STORE200", "가게 추가 성공"),
+
+    //리뷰 응답
+    REVIEW_ADD(HttpStatus.OK, "REVIEW200", "리뷰 추가 성공"),
+
+    //미션 응답
+    MISSION_ADD(HttpStatus.OK, "MISSION200", "가게에 미션 추가 성공"),
+    MISSION_CHALLENGE(HttpStatus.OK, "MISSION201", "가게의 미션을 도전 중인 미션에 추가 성공")
+    ;
 
     private final HttpStatus httpStatus;
     private final String code;

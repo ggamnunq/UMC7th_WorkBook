@@ -25,6 +25,7 @@ public class Mission extends BaseEntity {
     @ColumnDefault("0")
     private Integer reward;
 
+    @Column(nullable = false)
     private LocalDateTime deadLine;
 
     @Column(nullable = false)

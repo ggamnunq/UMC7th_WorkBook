@@ -42,4 +42,13 @@ public class Review extends BaseEntity {
                 ", body='" + body + '\'' +
                 '}';
     }
+
+    public void setMember (Member member) {
+        this.member = member;
+    }
+
+    public void setStore (Store store) {
+        this.store = store;
+    }
+
 }
