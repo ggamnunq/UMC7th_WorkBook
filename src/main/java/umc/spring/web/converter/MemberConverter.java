@@ -1,11 +1,14 @@
 package umc.spring.web.converter;
 
+import org.springframework.data.domain.Page;
 import umc.spring.domain.entity.Member;
+import umc.spring.domain.entity.Review;
 import umc.spring.domain.enums.Gender;
 import umc.spring.web.dto.MemberRequestDTO;
 import umc.spring.web.dto.MemberResponseDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MemberConverter {
 
@@ -43,6 +46,29 @@ public class MemberConverter {
 
     }
 
+    public static MemberResponseDTO.ReviewPreViewDto toReviewPreViewDto(Review review) {
+        return MemberResponseDTO.ReviewPreViewDto.builder()
+                .storeName(review.getStore().getName())
+                .score(review.getScore())
+                .body(review.getBody())
+                .createdAt(review.getCreatedAt())
+                .build();
+    }
 
+    public static MemberResponseDTO.ReviewPreViewListDto toReviewPreViewListDto(Page<Review> reviewList) {
+
+        List<MemberResponseDTO.ReviewPreViewDto> reviewPreViewDtoList = reviewList.stream().map(
+                MemberConverter::toReviewPreViewDto
+        ).toList();
+
+        return MemberResponseDTO.ReviewPreViewListDto.builder()
+                .reviewList(reviewPreViewDtoList)
+                .listSize(reviewPreViewDtoList.size())
+                .totalElements(reviewList.getTotalElements())
+                .totalPage(reviewList.getTotalPages())
+                .isFirst(reviewList.isFirst())
+                .isLast(reviewList.isLast())
+                .build();
+    }
 
 }
