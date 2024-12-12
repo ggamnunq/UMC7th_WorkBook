@@ -1,5 +1,7 @@
 package umc.spring.service.StoreService;
 
+import org.springframework.data.domain.Page;
+import umc.spring.domain.entity.Review;
 import umc.spring.domain.entity.Store;
 
 import java.util.List;
@@ -11,4 +13,5 @@ public interface StoreQueryService {
     List<Store> findStoresByNameAndScore(String name, float score);
     public boolean existsById(Long id);
     public Store findById(Long id);
+    Page<Review> getReviewList(Long storeId, Integer page);
 }
