@@ -15,6 +15,8 @@ public enum SuccessStatus implements BaseCode {
 
     //멤버 응답
     MEMBER_REVIEW(HttpStatus.OK, "MEMBER201", "멤버가 작성한 리뷰 조회 성공"),
+    MEMBER_CHALLENGING_MISSION(HttpStatus.OK, "MEMBER202", "멤버가 도전중인 미션 조회 성공"),
+    MEMBER_COMPLETED_MISSION(HttpStatus.OK, "MEMBER203", "멤버가 완료한 미션 조회 성공"),
 
     //가게 응답
     STORE_ADD(HttpStatus.OK, "STORE200", "가게 추가 성공"),

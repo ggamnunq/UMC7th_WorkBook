@@ -15,7 +15,6 @@ import umc.spring.apiPayload.code.status.SuccessStatus;
 import umc.spring.domain.entity.Mission;
 import umc.spring.domain.entity.Review;
 import umc.spring.domain.entity.Store;
-import umc.spring.service.MissionService.MissionQueryService;
 import umc.spring.service.StoreService.StoreCommandService;
 import umc.spring.service.StoreService.StoreQueryService;
 import umc.spring.validation.annotation.PageValid;
