@@ -6,15 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
-import umc.spring.apiPayload.exception.handler.MemberHandler;
-import umc.spring.apiPayload.exception.handler.MissionHandler;
 import umc.spring.apiPayload.exception.handler.PageHandler;
 import umc.spring.apiPayload.exception.handler.StoreHandler;
-import umc.spring.domain.entity.Member;
 import umc.spring.domain.entity.Mission;
 import umc.spring.domain.entity.Review;
 import umc.spring.domain.entity.Store;
-import umc.spring.repository.MemberRepository.MemberRepository;
 import umc.spring.repository.MissionRepository.MissionRepository;
 import umc.spring.repository.ReviewRepository.ReviewRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
@@ -55,7 +51,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     @Override
     public Page<Review> getReviewListByStoreId(Long storeId, Integer page) {
-        Store store = storeRepository.findById(storeId).get();
+        Store store = storeRepository.findById(storeId).orElseThrow( () -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
         return reviewRepository.findAllByStore(store, PageRequest.of(page-1, 10));
     }
 

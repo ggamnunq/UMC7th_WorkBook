@@ -2,10 +2,13 @@ package umc.spring.web.converter;
 
 import org.springframework.data.domain.Page;
 import umc.spring.domain.entity.Member;
+import umc.spring.domain.entity.Mission;
 import umc.spring.domain.entity.Review;
 import umc.spring.domain.enums.Gender;
+import umc.spring.domain.mapping.MemberMission;
 import umc.spring.web.dto.MemberRequestDTO;
 import umc.spring.web.dto.MemberResponseDTO;
+import umc.spring.web.dto.StoreResponseDTO;
 
 import java.util.ArrayList;
 import java.util.List;

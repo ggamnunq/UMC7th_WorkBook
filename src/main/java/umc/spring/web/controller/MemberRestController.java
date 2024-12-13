@@ -13,14 +13,19 @@ import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.apiPayload.code.status.SuccessStatus;
 import umc.spring.domain.entity.Member;
+import umc.spring.domain.entity.Mission;
 import umc.spring.domain.entity.Review;
+import umc.spring.domain.mapping.MemberMission;
 import umc.spring.service.MemberService.MemberCommandService;
 import umc.spring.service.MemberService.MemberQueryService;
 import umc.spring.validation.annotation.MemberValid;
+import umc.spring.validation.annotation.MissionValid;
 import umc.spring.validation.annotation.PageValid;
 import umc.spring.web.converter.MemberConverter;
 import umc.spring.web.dto.MemberRequestDTO;
 import umc.spring.web.dto.MemberResponseDTO;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,8 +46,6 @@ public class MemberRestController {
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MEMBER201", description = "멤버가 작성한 리뷰 조회 성공"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "PAGE_LESS_THAN_ONE", description = "page 1보다 작음", content = @Content(schema = @Schema(implementation = ApiResponse.class))),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH04", description = "access 토근 만료",content = @Content(schema = @Schema(implementation = ApiResponse.class))),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH06", description = "access 토근 모양이 이상함",content = @Content(schema = @Schema(implementation = ApiResponse.class)))
     })
     @Parameters({
             @Parameter(name = "memberId", description = "멤버의 ID, path variable 입니다!")

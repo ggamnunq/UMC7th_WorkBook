@@ -18,6 +18,12 @@ public class MissionQueryServiceImpl implements MissionQueryService {
     private final MissionRepository missionRepository;
 
     @Override
+    public boolean existsById(Long id) {
+        return missionRepository.existsById(id);
+    }
+
+
+    @Override
     public boolean checkNotChallenging(List<Mission> missions, Member member) {
 
         //같은 mission과 member를 가진 MemberMission이 없어야 true -> 도전중이거나 이미 수행한 미션이 아니라는 의미

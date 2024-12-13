@@ -18,7 +18,6 @@ public class MissionResponseDTO {
 
         Long missionId;
         LocalDateTime createdAt;
-
     }
 
     @Builder
@@ -28,6 +27,39 @@ public class MissionResponseDTO {
     public static class MissionChallengeResultDto {
         List<Long> missionIds;
         Long memberId;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionListDto {
+        List<MissionResponseDTO.MissionDto> missionDtoList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionDto {
+        Integer reward;
+        LocalDateTime deadLine;
+        String missionSpec;
+        LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CompleteMissionDto{
+        Long memberId;
+        Long missionId;
     }
 
 }

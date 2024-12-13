@@ -15,19 +15,21 @@ public enum SuccessStatus implements BaseCode {
 
     //멤버 응답
     MEMBER_REVIEW(HttpStatus.OK, "MEMBER201", "멤버가 작성한 리뷰 조회 성공"),
+    MEMBER_CHALLENGING_MISSION(HttpStatus.OK, "MEMBER202", "멤버가 도전중인 미션 조회 성공"),
+    MEMBER_COMPLETED_MISSION(HttpStatus.OK, "MEMBER203", "멤버가 완료한 미션 조회 성공"),
 
     //가게 응답
     STORE_ADD(HttpStatus.OK, "STORE200", "가게 추가 성공"),
     STORE_REVIEW(HttpStatus.OK, "STORE201", "가게 리뷰 조회 성공"),
     STORE_MISSION(HttpStatus.OK, "STORE202", "가게의 미션 목록 조회 성공"),
 
-
     //리뷰 응답
     REVIEW_ADD(HttpStatus.OK, "REVIEW200", "리뷰 추가 성공"),
 
     //미션 응답
     MISSION_ADD(HttpStatus.OK, "MISSION200", "가게에 미션 추가 성공"),
-    MISSION_CHALLENGE(HttpStatus.OK, "MISSION201", "가게의 미션을 도전 중인 미션에 추가 성공")
+    MISSION_CHALLENGE(HttpStatus.OK, "MISSION201", "가게의 미션을 도전 중인 미션에 추가 성공"),
+    MISSION_COMPLETE(HttpStatus.OK, "MISSION202", "도전중인 미션을 도전완료로 변경")
     ;
 
     private final HttpStatus httpStatus;
