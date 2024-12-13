@@ -100,4 +100,12 @@ public class MemberConverter {
 
     }
 
+    public static MemberResponseDTO.CompleteMissionDto toCompleteMissionDto(MemberMission memberMission) {
+
+        return MemberResponseDTO.CompleteMissionDto.builder()
+                .memberId(memberMission.getMember().getId())
+                .missionId(memberMission.getMission().getId())
+                .build();
+    }
+
 }

@@ -23,5 +23,5 @@ public interface MissionRepository extends JpaRepository<Mission, Long>, Mission
 
     Page<Mission> findMissionsByStore(Store store, PageRequest pageRequest);
 
-
+    public boolean existsById(Long id);
 }

@@ -10,5 +10,6 @@ public interface MissionQueryService {
 
     boolean checkNotChallenging(List<Mission> missions, Member member);
     List<Mission> findMissionsByStore(Store store);
+    boolean existsById(Long id);
 
 }

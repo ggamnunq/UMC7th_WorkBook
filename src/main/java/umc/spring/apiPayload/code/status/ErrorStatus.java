@@ -39,6 +39,9 @@ public enum ErrorStatus implements BaseErrorCode {
     PAGE_LESS_THAN_ONE(HttpStatus.BAD_REQUEST, "PAGE_4001", "페이지 번호가 1보다 작습니다."),
     PAGE_OUT_OF_BOUND(HttpStatus.BAD_REQUEST, "PAGE_4001", "페이지 번호가 범위 밖입니다."),
 
+    // 미션-멤버 (MemberMission) 관련 에러
+    MEMBER_MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER_MISSION_4001", "멤버와 미션에 해당하는 매핑데이터 없습니다."),
+
     // 예시...
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 

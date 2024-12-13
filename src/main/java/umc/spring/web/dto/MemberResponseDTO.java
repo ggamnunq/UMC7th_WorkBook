@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import umc.spring.domain.mapping.MemberMission;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -68,6 +65,15 @@ public class MemberResponseDTO {
         LocalDateTime deadLine;
         String missionSpec;
         LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CompleteMissionDto{
+        Long memberId;
+        Long missionId;
     }
 
 }
