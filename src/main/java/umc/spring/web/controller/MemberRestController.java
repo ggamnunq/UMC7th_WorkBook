@@ -56,41 +56,4 @@ public class MemberRestController {
         return ApiResponse.of(SuccessStatus.MEMBER_REVIEW, MemberConverter.toReviewPreViewListDto(reviewList));
     }
 
-    @GetMapping("/{memberId}/missions")
-    @Operation(summary = "내가 진행중/완료한 미션 목록 조회", description = "내가 진행중/완료한 미션을 조회하는 API이며, 페이징을 포함합니다. qeury String으로 page 번호와 진행완료 여부를 주세요")
-    @ApiResponses({
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MEMBER202", description = "멤버가 도전중인 미션 조회 성공"),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MEMBER203", description = "멤버가 완료한 미션 조회 성공"),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "PAGE_LESS_THAN_ONE", description = "page 1보다 작음", content = @Content(schema = @Schema(implementation = ApiResponse.class))),
-    })
-    @Parameters({
-            @Parameter(name = "memberId", description = "멤버의 ID, path variable입니다.")
-    })
-    public ApiResponse<MemberResponseDTO.MissionListDto> getMissionList(
-            @MemberValid @PathVariable(name = "memberId") Long memberId, @PageValid @RequestParam(name = "page")Integer page, @RequestParam(name = "completed") Boolean completed){
-        Page<MemberMission> memberMissions = memberQueryService.getMissionListMyMemberId(memberId, page, completed);
-        if(completed){
-            return ApiResponse.of(SuccessStatus.MEMBER_COMPLETED_MISSION, MemberConverter.toMissionListDto(memberMissions));
-        }else{
-            return ApiResponse.of(SuccessStatus.MEMBER_CHALLENGING_MISSION, MemberConverter.toMissionListDto(memberMissions));
-        }
-    }
-
-    @PatchMapping("/{memberId}/missions/complete")
-    @Operation(summary = "진행중인 미션을 진행 완료로 바꾸기", description = "내가 진행중인 미션을 진행 완료로 바꾸는 API이며, 페이징을 포함합니다. qeury String으로 page 번호와 미션 번호를 주세요")
-    @ApiResponses({
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MISSION202", description = "도전 중인 미션을 도전 완료로 변경"),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "MEMBER_MISSION_4001", description = "해당 미션을 멤버가 도전중이지 않음", content = @Content(schema = @Schema(implementation = ApiResponse.class))),
-    })
-    @Parameters({
-            @Parameter(name = "memberId", description = "멤버의 ID, path variable입니다.")
-    })
-    public ApiResponse<MemberResponseDTO.CompleteMissionDto> completeMission(
-            @MemberValid @PathVariable(name = "memberId") Long memberId, @MissionValid @RequestParam(name = "missionId") Long missionId){
-
-        MemberMission memberMission = memberCommandService.completeMission(memberId, missionId);
-        return ApiResponse.of(SuccessStatus.MISSION_COMPLETE, MemberConverter.toCompleteMissionDto(memberMission));
-    }
-
-
 }

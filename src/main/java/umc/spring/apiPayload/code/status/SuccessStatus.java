@@ -23,7 +23,6 @@ public enum SuccessStatus implements BaseCode {
     STORE_REVIEW(HttpStatus.OK, "STORE201", "가게 리뷰 조회 성공"),
     STORE_MISSION(HttpStatus.OK, "STORE202", "가게의 미션 목록 조회 성공"),
 
-
     //리뷰 응답
     REVIEW_ADD(HttpStatus.OK, "REVIEW200", "리뷰 추가 성공"),
 

@@ -74,38 +74,4 @@ public class MemberConverter {
                 .build();
     }
 
-    public static MemberResponseDTO.MissionDto toMissionDto(Mission mission) {
-        return MemberResponseDTO.MissionDto.builder()
-                .reward(mission.getReward())
-                .deadLine(mission.getDeadLine())
-                .missionSpec(mission.getMissionSpec())
-                .createdAt(mission.getCreatedAt())
-                .build();
-    }
-
-    public static MemberResponseDTO.MissionListDto toMissionListDto(Page<MemberMission> memberMissions) {
-
-        List<MemberResponseDTO.MissionDto> missionDtoList  = memberMissions.stream().map(
-                memberMission -> toMissionDto(memberMission.getMission())
-        ).toList();
-
-        return MemberResponseDTO.MissionListDto.builder()
-                .missionDtoList(missionDtoList)
-                .listSize(memberMissions.getSize())
-                .totalPage(memberMissions.getTotalPages())
-                .totalElements(memberMissions.getTotalElements())
-                .isFirst(memberMissions.isFirst())
-                .isLast(memberMissions.isLast())
-                .build();
-
-    }
-
-    public static MemberResponseDTO.CompleteMissionDto toCompleteMissionDto(MemberMission memberMission) {
-
-        return MemberResponseDTO.CompleteMissionDto.builder()
-                .memberId(memberMission.getMember().getId())
-                .missionId(memberMission.getMission().getId())
-                .build();
-    }
-
 }

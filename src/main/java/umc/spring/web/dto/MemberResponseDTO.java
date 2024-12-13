@@ -43,37 +43,6 @@ public class MemberResponseDTO {
         LocalDateTime createdAt;
     }
 
-    @Builder
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class MissionListDto {
-        List<MemberResponseDTO.MissionDto> missionDtoList;
-        Integer listSize;
-        Integer totalPage;
-        Long totalElements;
-        Boolean isFirst;
-        Boolean isLast;
-    }
 
-    @Builder
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class MissionDto {
-        Integer reward;
-        LocalDateTime deadLine;
-        String missionSpec;
-        LocalDateTime createdAt;
-    }
-
-    @Builder
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class CompleteMissionDto{
-        Long memberId;
-        Long missionId;
-    }
 
 }

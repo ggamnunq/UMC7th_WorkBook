@@ -54,11 +54,12 @@ public class MemberCommandServiceImpl implements MemberCommandService {
 
     @Override
     public MemberMission completeMission(Long memberId, Long missionId) {
-        // 멤버 find
+        // 멤버,미션 find
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
         Mission mission = missionRepository.findById(missionId).orElseThrow(() -> new MissionHandler(ErrorStatus.MISSION_NOT_FOUND));
-        // member에 해당하는 membeMission 찾음
+        // member,mission 에 해당하는 membeMission 찾음
         MemberMission memberMission = memberMissionRepository.findByMemberAndMission(member, mission).orElseThrow(() -> new MissionHandler(ErrorStatus.MEMBER_MISSION_NOT_FOUND));
+        // memberMission의 status를 COMPLETE로 바꿈
         memberMission.setStatus(MissionStatus.COMPLETE);
         return memberMission;
     }

@@ -6,14 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.PageHandler;
-import umc.spring.service.MemberService.MemberQueryService;
 import umc.spring.validation.annotation.PageValid;
 
 @Component
 @RequiredArgsConstructor
 public class PageValidator implements ConstraintValidator<PageValid, Integer> {
-
-    private final MemberQueryService memberQueryService;
 
     @Override
     public void initialize(PageValid constraintAnnotation) {

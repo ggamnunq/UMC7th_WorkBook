@@ -30,8 +30,6 @@ public class MemberQueryServiceImpl implements MemberQueryService {
 
     private final MemberRepository memberRepository;
     private final ReviewRepository reviewRepository;
-    private final MissionRepository missionRepository;
-    private final MemberMissionRepository missionMissionRepository;
     private final MemberMissionRepository memberMissionRepository;
 
     @Override
