@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.MemberHandler;
+import umc.spring.apiPayload.exception.handler.MissionHandler;
+import umc.spring.apiPayload.exception.handler.PageHandler;
 import umc.spring.apiPayload.exception.handler.StoreHandler;
 import umc.spring.domain.entity.Member;
+import umc.spring.domain.entity.Mission;
 import umc.spring.domain.entity.Review;
 import umc.spring.domain.entity.Store;
 import umc.spring.repository.MemberRepository.MemberRepository;
+import umc.spring.repository.MissionRepository.MissionRepository;
 import umc.spring.repository.ReviewRepository.ReviewRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
 
@@ -25,7 +29,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
     private final StoreRepository storeRepository;
     private final ReviewRepository reviewRepository;
-    private final MemberRepository memberRepository;
+    private final MissionRepository missionRepository;
 
     @Override
     public Optional<Store> findStore(Long id) {
@@ -52,7 +56,17 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     @Override
     public Page<Review> getReviewListByStoreId(Long storeId, Integer page) {
         Store store = storeRepository.findById(storeId).get();
-        return reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
+        return reviewRepository.findAllByStore(store, PageRequest.of(page-1, 10));
+    }
+
+    @Override
+    public Page<Mission> getMissionListByStoreId(Long storeId, Integer page) {
+        Store store = storeRepository.findById(storeId).orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
+        Page<Mission> missionList = missionRepository.findMissionsByStore(store, PageRequest.of(page-1, 10));
+        if(page > missionList.getTotalPages()) {
+            throw new PageHandler(ErrorStatus.PAGE_OUT_OF_BOUND);
+        }
+        return missionList;
     }
 
 
