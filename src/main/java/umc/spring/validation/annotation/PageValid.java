@@ -1,19 +1,16 @@
 package umc.spring.validation.annotation;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-import umc.spring.validation.validator.PageValidator;
+import io.swagger.v3.oas.annotations.Parameter;
 
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = PageValidator.class)
 @Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
+@Parameter(hidden = true)
 public @interface PageValid {
 
-    String message() default "페이지가 범위 밖입니다.";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
-
+    String name() default "page";
+    int defaultValue() default 0;
+    boolean required() default false;
 }

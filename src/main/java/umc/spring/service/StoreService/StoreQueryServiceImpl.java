@@ -52,14 +52,14 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     @Override
     public Page<Review> getReviewListByStoreId(Long storeId, Integer page) {
         Store store = storeRepository.findById(storeId).orElseThrow( () -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
-        return reviewRepository.findAllByStore(store, PageRequest.of(page-1, 10));
+        return reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
     }
 
     @Override
     public Page<Mission> getMissionListByStoreId(Long storeId, Integer page) {
         Store store = storeRepository.findById(storeId).orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
-        Page<Mission> missionList = missionRepository.findMissionsByStore(store, PageRequest.of(page-1, 10));
-        if(page > missionList.getTotalPages()) {
+        Page<Mission> missionList = missionRepository.findMissionsByStore(store, PageRequest.of(page, 10));
+        if(page+1 > missionList.getTotalPages()) {
             throw new PageHandler(ErrorStatus.PAGE_OUT_OF_BOUND);
         }
         return missionList;

@@ -45,9 +45,9 @@ public class MemberQueryServiceImpl implements MemberQueryService {
     @Override
     public Page<Review> getReviewListByMemberId(Long memberId, Integer page) {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
-        Page<Review> reviews = reviewRepository.findAllByMember(member, PageRequest.of(page - 1, 10));
+        Page<Review> reviews = reviewRepository.findAllByMember(member, PageRequest.of(page, 10));
         // 페이지 값이 전체 페이지 수를 넘지 않는지 검사
-        if (page > reviews.getTotalPages()) {
+        if (page+1 > reviews.getTotalPages()) {
             throw new PageHandler(ErrorStatus.PAGE_OUT_OF_BOUND);
         }
         return reviews;
@@ -60,9 +60,9 @@ public class MemberQueryServiceImpl implements MemberQueryService {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
         // completed boolean 값에 따라 진행중/진행완료 구분
         MissionStatus status = completed ? MissionStatus.COMPLETE : MissionStatus.CHALLENGING;
-        Page<MemberMission> memberMissions = memberMissionRepository.findByMemberAndStatus(member, status, PageRequest.of(page - 1, 10));
+        Page<MemberMission> memberMissions = memberMissionRepository.findByMemberAndStatus(member, status, PageRequest.of(page, 10));
 
-        if(page > memberMissions.getTotalPages()) {
+        if(page+1 > memberMissions.getTotalPages()) {
             throw new PageHandler(ErrorStatus.PAGE_OUT_OF_BOUND);
         }
         return memberMissions;
