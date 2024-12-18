@@ -40,10 +40,12 @@ public class MemberConverter {
 
         return Member.builder()
                 .name(request.getName())
-                .age(request.getAge())
+                .email(request.getEmail())
+                .password(request.getPassword())
                 .gender(gender)
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
+                .role(request.getRole())
                 .memberPreferList(new ArrayList<>())
                 .build();
 

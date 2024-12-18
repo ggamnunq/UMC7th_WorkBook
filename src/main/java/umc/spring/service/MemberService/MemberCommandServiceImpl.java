@@ -3,6 +3,7 @@ package umc.spring.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
@@ -35,11 +36,15 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     private final FoodCategoryRepository foodCategoryRepository;
     private final MemberMissionRepository memberMissionRepository;
     private final MissionRepository missionRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Member joinMember(MemberRequestDTO.JoinDto request) {
 
         Member newMember = MemberConverter.toMember(request);
+
+        newMember.encodePassword(passwordEncoder.encode(request.getPassword())); // Password Encode
+
         List<FoodCategory> foodCategoryList = request.getPreferCategory().stream()
                 .map(category -> {
 
