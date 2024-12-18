@@ -46,10 +46,11 @@ public class StoreRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH06", description = "access 토근 모양이 이상함",content = @Content(schema = @Schema(implementation = ApiResponse.class)))
     })
     @Parameters({
+            @Parameter(name = "page", description = "페이지 번호"),
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDto> getReviewList(
-            @StoreValid @PathVariable(name = "storeId") Long storeId, @PageValid @RequestParam(name = "page")Integer page){
+            @StoreValid @PathVariable(name = "storeId") Long storeId, @PageValid Integer page){
         Page<Review> reviewList = storeQueryService.getReviewListByStoreId(storeId, page);
         return ApiResponse.of(SuccessStatus.STORE_REVIEW, StoreConverter.toReviewPreViewListDto(reviewList));
     }
@@ -65,10 +66,11 @@ public class StoreRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH06", description = "access 토근 모양이 이상함",content = @Content(schema = @Schema(implementation = ApiResponse.class)))
     })
     @Parameters({
+            @Parameter(name = "page", description = "페이지 번호"),
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
     public ApiResponse<StoreResponseDTO.MissionListDto> getMissionList(
-            @StoreValid @PathVariable(name = "storeId") Long storeId, @PageValid @RequestParam(name = "page")Integer page){
+                @StoreValid @PathVariable(name = "storeId") Long storeId, @PageValid Integer page){
         Page<Mission> missionList = storeQueryService.getMissionListByStoreId(storeId, page);
         return ApiResponse.of(SuccessStatus.STORE_MISSION, StoreConverter.toMissionListDto(missionList));
     }
