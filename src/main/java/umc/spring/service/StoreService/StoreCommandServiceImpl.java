@@ -28,4 +28,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
         newStore.setRegion(region);
         return storeRepository.save(newStore);
     }
+
+
+
 }

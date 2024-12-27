@@ -31,6 +31,7 @@ public class OAuth2UserInfo {
     }
 
     private static OAuth2UserInfo ofGoogle(Map<String, Object> attributes) {
+        System.out.println(attributes.get("name"));
         return OAuth2UserInfo.builder()
                 .password((String) attributes.get("sub"))
                 .nickname((String) attributes.get("name"))

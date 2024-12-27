@@ -43,3 +43,16 @@ spring:
             user-name-attribute: id
   profiles:
     include: oauth
+cloud:
+  aws:
+    s3:
+      bucket: umc7th-workbook
+      path:
+        review: review
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY_ID}
+      secretKey: ${AWS_SECRET_ACCESS_KEY}
